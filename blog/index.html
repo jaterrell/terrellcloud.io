@@ -1,0 +1,48 @@
+---
+layout: default
+title: Blog
+---
+
+<div class="home">
+  <h1 class="page-heading">Blog</h1>
+
+  <p>Practitioner notes on cloud architecture and generative AI systems
+  — patterns from real engagements, written for clients and technical
+  peers.</p>
+
+  {%- assign posts = paginator.posts | default: site.posts -%}
+  {%- if posts.size > 0 -%}
+  <ul class="post-list">
+    {%- for post in posts -%}
+    <li>
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      <span class="post-meta">{{ post.date | date: date_format }}</span>
+      <h3>
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+      </h3>
+      {%- if post.excerpt -%}
+        {{ post.excerpt }}
+      {%- endif -%}
+    </li>
+    {%- endfor -%}
+  </ul>
+
+  {%- if paginator.total_pages > 1 -%}
+  <div class="pagination">
+    {%- if paginator.previous_page -%}
+      <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Newer posts</a>
+    {%- endif -%}
+    <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+    {%- if paginator.next_page -%}
+      <a href="{{ paginator.next_page_path | relative_url }}">Older posts &raquo;</a>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
+
+  <p class="rss-subscribe">Subscribe <a href="{{ '/feed.xml' | relative_url }}">via RSS</a>.</p>
+  {%- else -%}
+  <p>No posts yet — check back soon.</p>
+  {%- endif -%}
+</div>
