@@ -1,0 +1,147 @@
+---
+---
+
+// Fixed dark theme for minima 2.5.1 (the version GitHub Pages pins).
+// Minima 2.x has no skin support, so we override its Sass variables
+// before the import, then patch the handful of colors it hardcodes.
+//
+// Palette (GitHub-dark inspired):
+//   background  #0d1117   surfaces (code/tables) #161b22 / #21262d
+//   text        #c9d1d9   muted text #8b949e
+//   borders     #30363d   headings/site title #e6edf3
+//   accent      #58a6ff   visited links #79c0ff
+
+// --- Variable overrides (must precede the import) ---
+$background-color: #0d1117;
+$text-color:       #c9d1d9;
+$brand-color:      #58a6ff;
+
+// Minima's grey roles, remapped for a dark surface:
+//  - $grey-color:       muted text (post meta, footer, blockquotes)
+//  - $grey-color-light: borders, dividers, striping bases
+//  - $grey-color-dark:  high-emphasis text (site title, menu icon)
+$grey-color:       #8b949e;
+$grey-color-light: #30363d;
+$grey-color-dark:  #e6edf3;
+
+@import "minima";
+
+// --- Patches for colors minima 2.5.1 hardcodes ---
+
+// Links: minima derives :visited via darken($brand-color, 15%), which
+// gets murky on dark. Keep links unmistakably visible in both states.
+a {
+  color: $brand-color;
+
+  &:visited {
+    color: #79c0ff;
+  }
+
+  &:hover {
+    color: #a5d6ff;
+  }
+}
+
+// Headings get the high-emphasis tone.
+h1, h2, h3, h4, h5, h6 {
+  color: $grey-color-dark;
+}
+
+// Code: minima hardcodes background-color: #eef on pre/code.
+pre,
+code {
+  background-color: #161b22;
+  border: 1px solid $grey-color-light;
+  color: $text-color;
+}
+
+// Blockquotes.
+blockquote {
+  color: $grey-color;
+  border-left: 4px solid $grey-color-light;
+}
+
+// Tables: minima lightens light-theme greys for header/striping.
+table {
+  color: $text-color;
+  border: 1px solid $grey-color-light;
+
+  th {
+    background-color: #21262d;
+    color: $grey-color-dark;
+    border: 1px solid $grey-color-light;
+  }
+
+  td {
+    border: 1px solid $grey-color-light;
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: #161b22;
+    }
+  }
+}
+
+// Horizontal rules and header border accents.
+hr {
+  border-color: $grey-color-light;
+  background-color: $grey-color-light;
+}
+
+.site-header {
+  border-top-color: $grey-color-light;
+  border-bottom-color: $grey-color-light;
+}
+
+// --- Rouge syntax highlighting (dark palette) ---
+// Minima 2.5.1 ships a light rouge theme with a hardcoded white/#eef
+// background; replace it wholesale.
+.highlight {
+  background: #161b22;
+
+  .highlighter-rouge & {
+    background: #161b22;
+  }
+
+  pre { background: #161b22; }
+
+  .c, .cm, .c1, .cs { color: #8b949e; font-style: italic; } // comments
+  .cp   { color: #8b949e; font-weight: bold; }              // preprocessor
+  .err  { color: #ffa198; background-color: transparent; }  // errors
+  .k, .kc, .kd, .kp, .kr, .kv { color: #ff7b72; }           // keywords
+  .kt   { color: #ff7b72; }                                 // keyword types
+  .kn   { color: #ff7b72; }                                 // keyword.namespace
+  .o, .ow { color: #ff7b72; }                               // operators
+  .p, .pi { color: #c9d1d9; }                               // punctuation
+  .gd   { color: #ffa198; background-color: #490202; }      // diff deleted
+  .gi   { color: #56d364; background-color: #0f5323; }      // diff inserted
+  .ge   { color: #c9d1d9; font-style: italic; }             // emphasis
+  .gs   { color: #c9d1d9; font-weight: bold; }              // strong
+  .gh   { color: #79c0ff; font-weight: bold; }              // heading
+  .gu   { color: #79c0ff; font-weight: bold; }              // subheading
+  .gl   { color: #8b949e; }                                 // line numbers
+  .gp   { color: #8b949e; }                                 // prompt
+  .gr, .gt { color: #ffa198; }                              // error/traceback
+  .go   { color: #8b949e; }                                 // output
+  .m, .mb, .mf, .mh, .mi, .il, .mo, .mx { color: #79c0ff; } // numbers
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .sx, .s1 { color: #a5d6ff; } // strings
+  .se   { color: #79c0ff; }                                 // string escapes
+  .si   { color: #a5d6ff; }                                 // interpolation
+  .sr   { color: #7ee787; }                                 // regex
+  .ss   { color: #a5d6ff; }                                 // symbols
+  .na   { color: #7ee787; }                                 // attribute names
+  .nb, .bp { color: #ffa657; }                              // builtins
+  .nc   { color: #f0883e; font-weight: bold; }              // class names
+  .no   { color: #79c0ff; }                                 // constants
+  .nd   { color: #d2a8ff; }                                 // decorators
+  .ni   { color: #ffa657; }                                 // entities
+  .ne   { color: #f0883e; font-weight: bold; }              // exceptions
+  .nf, .fm { color: #d2a8ff; }                              // functions
+  .nl   { color: #79c0ff; }                                 // labels
+  .nn   { color: #ff7b72; }                                 // namespaces
+  .nt   { color: #7ee787; }                                 // tags
+  .nv, .vc, .vg, .vi, .vm { color: #79c0ff; }               // variables
+  .w    { color: #6e7681; }                                 // whitespace
+  .hll  { background-color: #2d333b; }                      // highlighted line
+}
