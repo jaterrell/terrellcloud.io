@@ -1,0 +1,46 @@
+# Site settings
+title: TerrellCloud.io
+description: >-
+  TerrellCloud.io is a professional Cloud & AI Systems consultancy,
+  established in 2021. We help clients design and implement technology
+  in the cloud and generative AI space — from cloud architecture to
+  AI/GenAI system design and implementation.
+url: "https://terrellcloud.io"
+baseurl: ""
+
+author:
+  name: TerrellCloud.io
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# Permalinks for posts
+permalink: /blog/:year/:month/:slug/
+
+# Pagination (jekyll-paginate, whitelisted by GitHub Pages)
+paginate: 10
+paginate_path: "/blog/page:num/"
+
+# Navigation (minima renders these pages in the site header)
+header_pages:
+  - blog/index.html
+  - about.md
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Exclude from the built site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
